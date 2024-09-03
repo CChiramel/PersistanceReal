@@ -8,19 +8,48 @@
 import SwiftUI
 import SwiftData
 
+// Model for the To-Do item
+@Model
+class TodoItem: Identifiable {
+    var id = UUID()
+    var title: String
+    var timestamp: Date
+    var isCompleted: Bool = false
+    
+    init(title: String, timestamp: Date) {
+        self.title = title
+        self.timestamp = timestamp
+    }
+}
+
 struct Todo: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var items: [TodoItem]
+
+    @State private var newItemTitle = ""
+    @State private var newItemDate = Date()
+    @State private var showAddItemSheet = false
 
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    HStack {
+                        Button(action: {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                completeItem(item)
+                            }
+                        }) {
+                            Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(item.isCompleted ? .green : .gray)
+                        }
+                        Text(item.title)
+                            .strikethrough(item.isCompleted)
+                        Spacer()
+                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .shortened))
+                            .foregroundColor(.secondary)
                     }
+                    .transition(.slide)
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -29,20 +58,51 @@ struct Todo: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: { showAddItemSheet.toggle() }) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
+            .sheet(isPresented: $showAddItemSheet) {
+                VStack {
+                    TextField("Task Title", text: $newItemTitle)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+
+                    DatePicker("Due Date", selection: $newItemDate, displayedComponents: [.date, .hourAndMinute])
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .padding()
+
+                    Button("Save") {
+                        addItem()
+                        showAddItemSheet.toggle()
+                    }
+                    .padding()
+                    .buttonStyle(.borderedProminent)
+                }
+                .padding()
+            }
         } detail: {
-            Text("Select an itemssssss")
+            Text("Select an item")
         }
     }
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = TodoItem(title: newItemTitle, timestamp: newItemDate)
             modelContext.insert(newItem)
+            newItemTitle = ""
+            newItemDate = Date()
+        }
+    }
+
+    private func completeItem(_ item: TodoItem) {
+        withAnimation {
+            item.isCompleted.toggle()
+            if item.isCompleted {
+                // Animate the removal of the completed item
+                modelContext.delete(item)
+            }
         }
     }
 
@@ -56,6 +116,6 @@ struct Todo: View {
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    Todo()
+        .modelContainer(for: TodoItem.self, inMemory: true)
 }

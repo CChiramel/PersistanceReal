@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572454752C874FFF00642A54 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572454742C874FFF00642A54 /* Todo.swift */; };
+		572454772C87501700642A54 /* CollegeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572454762C87501700642A54 /* CollegeList.swift */; };
 		57FEE9FD2C87476A00A6A6B0 /* PersistanceRealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FEE9FC2C87476A00A6A6B0 /* PersistanceRealApp.swift */; };
 		57FEE9FF2C87476A00A6A6B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FEE9FE2C87476A00A6A6B0 /* ContentView.swift */; };
 		57FEEA012C87476A00A6A6B0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FEEA002C87476A00A6A6B0 /* Item.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		572454742C874FFF00642A54 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		572454762C87501700642A54 /* CollegeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegeList.swift; sourceTree = "<group>"; };
 		57FEE9F92C87476A00A6A6B0 /* PersistanceReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersistanceReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FEE9FC2C87476A00A6A6B0 /* PersistanceRealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceRealApp.swift; sourceTree = "<group>"; };
 		57FEE9FE2C87476A00A6A6B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 			children = (
 				57FEE9FC2C87476A00A6A6B0 /* PersistanceRealApp.swift */,
 				57FEE9FE2C87476A00A6A6B0 /* ContentView.swift */,
+				572454762C87501700642A54 /* CollegeList.swift */,
+				572454742C874FFF00642A54 /* Todo.swift */,
 				57FEEA002C87476A00A6A6B0 /* Item.swift */,
 				57FEEA022C87476B00A6A6B0 /* Assets.xcassets */,
 				57FEEA042C87476B00A6A6B0 /* Preview Content */,
@@ -142,7 +148,9 @@
 			files = (
 				57FEE9FF2C87476A00A6A6B0 /* ContentView.swift in Sources */,
 				57FEEA012C87476A00A6A6B0 /* Item.swift in Sources */,
+				572454772C87501700642A54 /* CollegeList.swift in Sources */,
 				57FEE9FD2C87476A00A6A6B0 /* PersistanceRealApp.swift in Sources */,
+				572454752C874FFF00642A54 /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

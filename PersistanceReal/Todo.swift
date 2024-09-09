@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 
-// Model for the To-Do item
 @Model
 class TodoItem: Identifiable {
     var id = UUID()
@@ -100,7 +99,6 @@ struct Todo: View {
         withAnimation {
             item.isCompleted.toggle()
             if item.isCompleted {
-                // Animate the removal of the completed item
                 modelContext.delete(item)
             }
         }
@@ -117,5 +115,5 @@ struct Todo: View {
 
 #Preview {
     Todo()
-        .modelContainer(for: TodoItem.self, inMemory: true)
+        .modelContainer(for: TodoItem.self)
 }

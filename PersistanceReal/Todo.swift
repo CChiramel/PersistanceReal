@@ -17,7 +17,7 @@ class TodoItem: Identifiable {
     
     init(title: String, timestamp: Date) {
         self.title = title
-        self.timestamp = timestamp
+        self.timestamp = timestampjgyfuf
     }
 }
 
